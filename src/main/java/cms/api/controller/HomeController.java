@@ -55,7 +55,6 @@ public class HomeController
     }
     
     
-    
     //test
 	@GetMapping("/tt")
 	@ResponseBody
@@ -65,7 +64,6 @@ public class HomeController
 		Object p2 = a != null ? a.getPrincipal() : null;
 		
 		return "ok";
-		
 		/*
 		ReseourceServer(JWT): autenticado com Jwt token
 			- p e a   -> JwtAuthenticationToken 
@@ -81,6 +79,5 @@ public class HomeController
 
 		*/
 	}
-	
 
 }
