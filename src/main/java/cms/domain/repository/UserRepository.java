@@ -10,6 +10,6 @@ import cms.domain.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     
-	@Query("from User p left join fetch p.roles where p.oidcId = :oidcId ")
+	//@Query("from User u left join fetch u.roles r left join fetch r.permissions where u.oidcId = :oidcId ")
 	User findByOidcId(@Param("oidcId") String oidcId);
 }

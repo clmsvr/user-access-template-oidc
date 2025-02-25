@@ -46,7 +46,7 @@ public class User
     private LocalDateTime   creationDate = LocalDateTime.now() ;
     private LocalDateTime   updateDate = LocalDateTime.now() ; 
     
-	@ManyToMany//(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_has_role", 
 			  joinColumns = @JoinColumn(name = "user_id"), 
 			  inverseJoinColumns = @JoinColumn(name = "role_id"))
