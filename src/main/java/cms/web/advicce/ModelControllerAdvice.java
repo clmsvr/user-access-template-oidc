@@ -1,4 +1,4 @@
-package cms.api.advicce;
+package cms.web.advicce;
 
 import java.util.HashMap;
 

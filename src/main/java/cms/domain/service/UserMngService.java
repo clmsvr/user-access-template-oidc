@@ -6,13 +6,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cms.api.model.PwdChange;
-import cms.api.model.UserApi;
 import cms.components.Cognito;
 import cms.domain.exceptions.InvalidProviderException;
 import cms.domain.exceptions.NotFoundException;
 import cms.domain.model.User;
 import cms.repository.UserRepository;
+import cms.web.model.PwdChange;
+import cms.web.model.UserApi;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.services.cognitoidentity.model.NotAuthorizedException;

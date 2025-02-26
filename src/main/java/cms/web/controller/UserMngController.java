@@ -1,4 +1,4 @@
-package cms.api.controller;
+package cms.web.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cms.api.advicce.ModelControllerAdvice;
-import cms.api.exceptions.BadRequestException;
-import cms.api.model.PwdChange;
-import cms.api.model.UserApi;
 import cms.domain.exceptions.InvalidProviderException;
 import cms.domain.exceptions.NotFoundException;
 import cms.domain.model.User;
 import cms.domain.service.UserMngService;
+import cms.web.advicce.ModelControllerAdvice;
+import cms.web.exceptions.BadRequestException;
+import cms.web.model.PwdChange;
+import cms.web.model.UserApi;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
