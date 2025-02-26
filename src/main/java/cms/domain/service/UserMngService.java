@@ -12,7 +12,7 @@ import cms.components.Cognito;
 import cms.domain.exceptions.InvalidProviderException;
 import cms.domain.exceptions.NotFoundException;
 import cms.domain.model.User;
-import cms.domain.repository.UserRepository;
+import cms.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.services.cognitoidentity.model.NotAuthorizedException;

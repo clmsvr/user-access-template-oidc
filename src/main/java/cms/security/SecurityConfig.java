@@ -35,7 +35,7 @@ import cms.components.CognitoProperties;
 import cms.domain.model.Permission;
 import cms.domain.model.Role;
 import cms.domain.model.UserRole;
-import cms.domain.repository.UserRoleRepository;
+import cms.repository.UserRoleRepository;
 
 @Configuration //nao eh necessario pq a anotacao @EnableWebSecurity deriva de @Configuration
 @EnableWebSecurity //permite que nossa configuracao substitua as configurações default de seguranca dos Starters do Spring Security - https://stackoverflow.com/questions/44671457/what-is-the-use-of-enablewebsecurity-in-spring
