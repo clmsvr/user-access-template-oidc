@@ -46,14 +46,14 @@ public class UserMngService
         cognito.chantePassword(accessToken, pwd.getPwd(), pwd.getNewpwd1());
 	}
 
-	public void updateUser(@Valid UserApi userModel, User doaminUser) {
+	public void updateUser(@Valid UserApi userModel, User domainUser) {
 
         //User userdb = userRep.getByEmail(userModel.getEmail()); //brecha de seguranca
         //modelMapper.map(userModel, userdb);
-        BeanUtils.copyProperties(userModel, doaminUser, "id", "oidcId", "providerName", "email", "creationDate"); //iguinorar props
+        BeanUtils.copyProperties(userModel, domainUser, "id", "oidcId", "providerName", "email", "creationDate"); //iguinorar props
                                  // o formulario de usuario nao atualiza sennha 
-        doaminUser.setUpdateDate(LocalDateTime.now());
-    	userRep.save(doaminUser);
+        domainUser.setUpdateDate(LocalDateTime.now());
+    	userRep.save(domainUser);
     	userRep.flush();
 		
 	}

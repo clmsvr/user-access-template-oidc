@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "User")
-public class User
+public class UserRole
 {
 	@EqualsAndHashCode.Include
 	@Id
@@ -47,4 +47,10 @@ public class User
     
     private LocalDateTime   creationDate = LocalDateTime.now() ;
     private LocalDateTime   updateDate = LocalDateTime.now() ; 
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_has_role", 
+			  joinColumns = @JoinColumn(name = "user_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 }

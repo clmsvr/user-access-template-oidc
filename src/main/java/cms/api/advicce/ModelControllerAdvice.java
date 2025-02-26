@@ -1,4 +1,4 @@
-package cms.api.controller;
+package cms.api.advicce;
 
 import java.util.HashMap;
 
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import cms.domain.repository.UserRepository;
-import cms.security.SecurityConfig;
 
 @ControllerAdvice
 public class ModelControllerAdvice {

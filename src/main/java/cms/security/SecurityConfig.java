@@ -34,15 +34,15 @@ import cms.components.CognitoLogoutSuccessHandler;
 import cms.components.CognitoProperties;
 import cms.domain.model.Permission;
 import cms.domain.model.Role;
-import cms.domain.model.User;
-import cms.domain.repository.UserRepository;
+import cms.domain.model.UserRole;
+import cms.domain.repository.UserRoleRepository;
 
 @Configuration //nao eh necessario pq a anotacao @EnableWebSecurity deriva de @Configuration
 @EnableWebSecurity //permite que nossa configuracao substitua as configurações default de seguranca dos Starters do Spring Security - https://stackoverflow.com/questions/44671457/what-is-the-use-of-enablewebsecurity-in-spring
 public class SecurityConfig {
 
 	@Autowired
-	UserRepository userRepository;
+	UserRoleRepository userRepository;
 	@Autowired
 	CognitoProperties cognitoProperties;
 	
@@ -140,7 +140,7 @@ public class SecurityConfig {
 		Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 		
 		//Buscar ou Criar usuario no cadastrado no banco
-		User domainUser = findUserInDatabase(oauthUser);
+		UserRole domainUser = findUserInDatabase(oauthUser);
 		addAuthorities(domainUser.getRoles(), accessToken.getScopes(), mappedAuthorities);
 		
 		//executar ações com base no Client ID
@@ -164,12 +164,12 @@ public class SecurityConfig {
 	}
 	
 	@Transactional
-	private User findUserInDatabase(OAuth2User oauthUser) 
+	private UserRole findUserInDatabase(OAuth2User oauthUser) 
 	{
 		String oidcId = oauthUser.getName();  //getAttribute(IdTokenClaimNames.SUB);
-		User domainUser = userRepository.findByOidcId(oidcId);
+		UserRole domainUser = userRepository.findByOidcId(oidcId);
 		if (domainUser == null) {
-			domainUser = new User();
+			domainUser = new UserRole();
 			domainUser.setOidcId(oidcId);
 			domainUser.setName(oauthUser.getAttribute("name"));
 			domainUser.setEmail(oauthUser.getAttribute("email"));
@@ -181,7 +181,7 @@ public class SecurityConfig {
 	}
 	
 	@Transactional
-	private void addAuthorities(List<Role> roles, Set<String> scopes,
+	private void addAuthorities(Set<Role> roles, Set<String> scopes,
 			Collection<GrantedAuthority> mappedAuthorities) 
 	{
 		for (Role role : roles) {
