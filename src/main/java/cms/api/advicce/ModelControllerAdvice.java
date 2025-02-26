@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import cms.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 
 @ControllerAdvice
 public class ModelControllerAdvice {
 
+	boolean needUpdate = false;
+	
     @Autowired
     OAuth2AuthorizedClientService authorizedClientService;
     @Autowired
@@ -56,14 +59,25 @@ public class ModelControllerAdvice {
     }
 
 	@ModelAttribute
-	public void addAttributes(Model model, OAuth2AuthenticationToken principal) 
+	public void addAttributes(Model model, HttpSession session , OAuth2AuthenticationToken principal) 
 	{
 		model.addAttribute(STATES, states);
 		
-		if(principal != null) {
+		if(principal != null) 
+		{
 			OAuth2User oauthUser = principal.getPrincipal();
 			
-		    model.addAttribute(DOMAIN_USER, userRep.findByOidcId(oauthUser.getName()));
+			Object userDomain = session.getAttribute(DOMAIN_USER);
+			if (userDomain == null || needUpdate) {
+				userDomain = userRep.findByOidcId(oauthUser.getName());
+				session.setAttribute(DOMAIN_USER, userDomain);
+				model.addAttribute(DOMAIN_USER, userDomain);
+				needUpdate = false;
+			}
+			else {
+				model.addAttribute(DOMAIN_USER, userDomain);
+			}
+		    
 		    
 			var oAuth2AuthorizedClient = authorizedClientService.loadAuthorizedClient(
 					principal.getAuthorizedClientRegistrationId(), 
@@ -74,6 +88,14 @@ public class ModelControllerAdvice {
 		    	model.addAttribute(ACCESS_TOKEN, accessToken );
 			}
 		}
+	}
+
+	/**
+	 * Para indicar ao ModelAdvice que houve alguma mudança em um dos objetos que gerencia.
+	 * Portanto, se o objeto é guardado na sessão, ele deve ser atualizado.
+	 */
+	public void invalidate() {
+		needUpdate = true;
 	}
 	
 }

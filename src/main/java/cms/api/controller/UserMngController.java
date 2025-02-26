@@ -18,7 +18,6 @@ import cms.api.model.PwdChange;
 import cms.api.model.UserApi;
 import cms.domain.exceptions.InvalidProviderException;
 import cms.domain.exceptions.NotFoundException;
-import cms.domain.model.UserRole;
 import cms.domain.model.User;
 import cms.domain.service.UserMngService;
 import jakarta.transaction.Transactional;
@@ -38,7 +37,9 @@ public class UserMngController
 	private UserMngService userService;
 	@Autowired
 	private ModelMapper modelMapper;
-    
+	@Autowired
+	ModelControllerAdvice modelAdvice;
+	
     @GetMapping({"/account"})
     public String account(Model model) 
     {
@@ -69,6 +70,7 @@ public class UserMngController
         }
 
     	userService.updateUser(userModel,doaminUser);
+    	modelAdvice.invalidate();
     	
         return "redirect:/user/mng/account?message=1";
     }    

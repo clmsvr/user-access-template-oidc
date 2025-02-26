@@ -28,7 +28,7 @@ public class UserMngService
 	private UserRepository userRep;
 	@Autowired
 	private Cognito cognito;
-	
+
 	
 	public void changeUserPassword(String accessToken, PwdChange pwd, User domainUser) 
 	throws NotFoundException, InvalidProviderException, 
@@ -55,6 +55,5 @@ public class UserMngService
         domainUser.setUpdateDate(LocalDateTime.now());
     	userRep.save(domainUser);
     	userRep.flush();
-		
 	}
 }
