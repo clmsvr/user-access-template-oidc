@@ -1,6 +1,5 @@
 -- https://docs.spring.io/spring-boot/how-to/data-initialization.html
 
-
 insert into Role (id, name, description) 
 values 
 (1, 'Admin', 'Promove novos usuaros e aloca blocos de trabalho');
