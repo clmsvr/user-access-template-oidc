@@ -26,8 +26,8 @@ public class Role
     private String description;
     
     @ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "role_has_permission", 
+	@JoinTable(name = "role_has_authority", 
 	  joinColumns = @JoinColumn(name = "role_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "permission_id"))	
-	private Set<Permission> permissions = new HashSet<>();
+	  inverseJoinColumns = @JoinColumn(name = "authority_id"))	
+	private Set<Authority> authorities = new HashSet<>();
 }

@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-public class Permission
+public class Authority
 {
 	@EqualsAndHashCode.Include
 	@Id

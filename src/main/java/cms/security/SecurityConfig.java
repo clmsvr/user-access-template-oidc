@@ -32,7 +32,7 @@ import com.nimbusds.jose.shaded.gson.internal.LinkedTreeMap;
 
 import cms.components.CognitoLogoutSuccessHandler;
 import cms.components.CognitoProperties;
-import cms.domain.model.Permission;
+import cms.domain.model.Authority;
 import cms.domain.model.Role;
 import cms.domain.model.UserRole;
 import cms.repository.UserRoleRepository;
@@ -186,7 +186,7 @@ public class SecurityConfig {
 	{
 		for (Role role : roles) {
 			mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
-			for (Permission p : role.getPermissions()) {
+			for (Authority p : role.getAuthorities()) {
 				mappedAuthorities.add(new SimpleGrantedAuthority(p.getName()));
 			}
 		}
