@@ -32,6 +32,7 @@ import com.nimbusds.jose.shaded.gson.internal.LinkedTreeMap;
 
 import cms.components.CognitoLogoutSuccessHandler;
 import cms.components.CognitoProperties;
+import cms.domain.Consts;
 import cms.domain.model.Authority;
 import cms.domain.model.Role;
 import cms.domain.model.UserRole;
@@ -54,8 +55,8 @@ public class SecurityConfig {
 				requests
 					.requestMatchers("/","/bootstrap/**","/css/**","/fonts/**","/image/**","/js/**")
 					.permitAll()
-					.requestMatchers("/user/mng/*").authenticated()
-					.requestMatchers("/admin/*").hasRole("Admin")
+					.requestMatchers("/user/mng/**").authenticated()
+					.requestMatchers("/admin/**").hasRole("Admin") //com "/admin/*" '/admin' NAO estará incluso, somente paths abaixo.
 					.anyRequest().authenticated()
 			)
 			.oauth2Login(Customizer.withDefaults())
@@ -200,7 +201,7 @@ public class SecurityConfig {
 	{
 		String providerName = "";
 		if (oauthUser != null) {
-			providerName = "default";
+			providerName = Consts.LOCAL_PROVIDER_NAME;
 			
 			Object identities = oauthUser.getAttribute("identities");
 			if (identities instanceof ArrayList atts) 

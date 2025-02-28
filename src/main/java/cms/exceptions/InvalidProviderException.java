@@ -1,4 +1,4 @@
-package cms.domain.exceptions;
+package cms.exceptions;
 
 @SuppressWarnings("serial")
 public class InvalidProviderException extends Exception {

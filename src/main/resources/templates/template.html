@@ -48,9 +48,15 @@
                              <ul>
                                  <li><a th:href="@{/user/mng/account}">Minha Conta</a></li>
                                  <li class="divider"></li>
-                                 <div  th:if="${domainUser.providerName == 'default' }"  th:remove="tag" >
+                                 
+                                 <div  th:if="${domainUser.providerName == localProviderName }"  th:remove="tag" >
                                    <li><a th:href="@{/user/mng/change-pwd}">Alterar Senha</a></li>
-                                 </div>                                 
+                                 </div>
+                                 
+                                 <div sec:authorize="hasRole('Admin')" th:remove="tag"  > 
+                                    <li><a th:href="@{/admin}">Administrador</a></li>     
+                                 </div>
+                                 
                                  <li><a th:href="@{/logout}">Sair</a></li>
                              </ul>                       
                          </li>

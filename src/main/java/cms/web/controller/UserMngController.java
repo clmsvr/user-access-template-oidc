@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cms.domain.exceptions.InvalidProviderException;
-import cms.domain.exceptions.NotFoundException;
 import cms.domain.model.User;
 import cms.domain.service.UserMngService;
+import cms.exceptions.InvalidProviderException;
+import cms.exceptions.NotFoundException;
 import cms.web.advicce.ModelControllerAdvice;
 import cms.web.exceptions.BadRequestException;
 import cms.web.model.PwdChange;

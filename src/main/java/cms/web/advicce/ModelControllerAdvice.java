@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import cms.domain.Consts;
 import cms.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 
@@ -23,9 +24,10 @@ public class ModelControllerAdvice {
     @Autowired
     UserRepository userRep;
 
-    public static final String DOMAIN_USER    = "domainUser";
-    public static final String ACCESS_TOKEN   = "accessToken";
-    public static final String STATES         = "states";
+    public static final String DOMAIN_USER         = "domainUser";
+    public static final String ACCESS_TOKEN        = "accessToken";
+    public static final String STATES              = "states";
+    public static final String LOCAL_PROVIDER_NAME = "localProviderName";
     
     private static HashMap<String, String> states = new HashMap<>();
     static{
@@ -78,7 +80,6 @@ public class ModelControllerAdvice {
 				model.addAttribute(DOMAIN_USER, userDomain);
 			}
 		    
-		    
 			var oAuth2AuthorizedClient = authorizedClientService.loadAuthorizedClient(
 					principal.getAuthorizedClientRegistrationId(), 
 					oauthUser.getName());
@@ -87,6 +88,8 @@ public class ModelControllerAdvice {
 				String accessToken = oAuth2AuthorizedClient.getAccessToken().getTokenValue();
 		    	model.addAttribute(ACCESS_TOKEN, accessToken );
 			}
+			
+			model.addAttribute(LOCAL_PROVIDER_NAME, Consts.LOCAL_PROVIDER_NAME);
 		}
 	}
 

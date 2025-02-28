@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import cms.web.exceptions.BadRequestException;
-import cms.web.exceptions.InternalErrorException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -54,20 +53,6 @@ public class ExceptionHandlerControllerAdvice {
     {
     	log.warn(e.toString());
         model.addAttribute("errorMessage", "Requisição Inválida: "+e.getMessage());
-        
-        return "error";
-    }
-    
-    /**
-     * InternalErrorException
-     * Api exception
-     */    
-    @ExceptionHandler(InternalErrorException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String badRequessst(final InternalErrorException e, final Model model) 
-    {
-    	log.error(e.toString());
-        model.addAttribute("errorMessage", "Desculpe! Ocorreu uma falha inesperada: "+e.getMessage());
         
         return "error";
     }

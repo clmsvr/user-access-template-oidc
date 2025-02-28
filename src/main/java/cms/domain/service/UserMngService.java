@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cms.components.Cognito;
-import cms.domain.exceptions.InvalidProviderException;
-import cms.domain.exceptions.NotFoundException;
+import cms.domain.Consts;
 import cms.domain.model.User;
+import cms.exceptions.InvalidProviderException;
+import cms.exceptions.NotFoundException;
 import cms.repository.UserRepository;
 import cms.web.model.PwdChange;
 import cms.web.model.UserApi;
@@ -40,7 +41,7 @@ public class UserMngService
             throw new NotFoundException("tentativa de alterar senha de usuario nao encontrado.");
         }
 
-        if (domainUser.getProviderName().equals("default") == false)
+        if (domainUser.getProviderName().equals(Consts.LOCAL_PROVIDER_NAME) == false)
         	throw new InvalidProviderException("Inconsistencia: não é possivel alterar a senha de um usuário logado através de um provedor Federado: ["+domainUser.getProviderName()+"]");
         
         cognito.chantePassword(accessToken, pwd.getPwd(), pwd.getNewpwd1());
