@@ -31,7 +31,9 @@ Recursos usados:
 * Vai ser preciso uma conta no **Amazon** 
 * Criar um [User Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html#what-is-amazon-cognito-user-pools) no **Aws Cognito**.
 
-* Acessar da url de **"Discovery"** do Pool :  https://cognito-idp.us-east-1.amazonaws.com/{{User Pool ID}}/.well-known/openid-configuration
+* Anotar para nossa configuração o **User Pool ID**. ex: us-east-1_FSSjl3xir
+
+* Acessar da url de **"Discovery"** do Pool :  https://cognito-idp.us-east-1.amazonaws.com/**{{User Pool ID}}**/.well-known/openid-configuration
     * Ex: [https://cognito-idp.us-east-1.amazonaws.com/us-east-1_FSSjl3xir/.well-known/openid-configuration](https://cognito-idp.us-east-1.amazonaws.com/us-east-1_FSSjl3xir/.well-known/openid-configuration)
 
 * Identificar para a nossa configuração as URLs:
