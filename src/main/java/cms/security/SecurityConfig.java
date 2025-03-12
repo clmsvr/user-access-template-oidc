@@ -51,10 +51,10 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain1(HttpSecurity http) throws Exception 
 	{
 		http
-			.authorizeHttpRequests((requests) -> 
+			.authorizeHttpRequests(requests -> 
 				requests
 					.requestMatchers("/","/bootstrap/**","/css/**","/fonts/**","/image/**","/js/**")
-					.permitAll()
+						.permitAll()
 					.requestMatchers("/user/mng/**").authenticated()
 					.requestMatchers("/admin/**").hasRole("Admin") //com "/admin/*" '/admin' NAO estará incluso, somente paths abaixo.
 					.anyRequest().authenticated()
